@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Shift extends Model
 {
-    protected $table = 'shifts';
+    protected $table = 'SHIFTS';
     protected $primaryKey = 'id';
     public $timestamps = false;
 
