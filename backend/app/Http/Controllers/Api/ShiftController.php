@@ -15,19 +15,19 @@ class ShiftController extends Controller
     {
         $serviceId = intval($service_id);
 
-        $service = Service::where('id', $serviceId)->get(); // QUERY: select * from SERVICES where id = $serviceId
+        $service = Service::where('id', $serviceId)->get(); 
 
         if($service->isEmpty()) {
             return response()->json(['error' => 'Service not found'], 404);
         }
 
-        $serviceWord = Service::where('id', $serviceId)->value('word'); // QUERY: select word from SERVICES where id = $serviceId
+        $serviceWord = Service::where('id', $serviceId)->value('word');
 
         if(!$serviceWord) {
             return response()->json(['error' => 'Service word not found'], 404);
         }
 
-        $lastShift = Shift::where('service_id', $serviceId) // QUERY: select shift from SHIFTS where service_id = $serviceId order by id desc limit 1
+        $lastShift = Shift::where('service_id', $serviceId)
         ->orderByRaw('id DESC')
         ->value('shift');
 
@@ -54,7 +54,7 @@ class ShiftController extends Controller
 
     public function callNextShift(string $module_id):JsonResponse
     {
-        $nextShift = Shift::whereHas('service', function(Builder $query) use ($module_id) {
+        $nextShift = Shift::whereHas('service', function($query) use ($module_id) {
             $query->where('module_id', $module_id);
         })
         ->where('called', false)
@@ -72,7 +72,8 @@ class ShiftController extends Controller
         return response()->json(['shift' => $nextShift->shift], 200);
     }
 
-    public function upcomingShifts(){
+    public function upcomingShifts()
+    {
         $nextShift = DB::table('SHIFTS')
         ->leftJoin('SERVICES', 'SHIFTS.service_id', '=', 'SERVICES.id')
         ->where('SHIFTS.called', false)
