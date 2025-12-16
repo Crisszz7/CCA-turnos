@@ -1,23 +1,35 @@
+import BgPages from "./components/IU/BgPages";
+import { HeaderComponent } from "./components/IU/HeaderComponent";
+import {NavbarComponent } from "./components/IU/NavbarComponent.jsx";
 
 export const Shift =() => {
     return(
-        <div>
-            <h2> Turnos </h2>
-            <form action="">
-                <label htmlFor=""> Selecione su modulo: </label>
-                <select name="" id="">
+        <>
+        <BgPages/>
+            <div className="w-full h-dvh bg-transparent  ">
+                <HeaderComponent/>
+                <NavbarComponent/>
+                <div className="m-auto h-max w-11/12 lg:w-3/4 rounded-md lg:mt-16  shadow-lg">
+                <div className="text-white">
+                    <h2 className="font-bold text-3xl"> Turnos </h2>
+                        <form action="" className="bg-neutral-800 w-full py-5 flex flex-col gap-3 rounded-md mt-5 px-8">
+                            <label htmlFor=""> Selecione su modulo: </label>
+                            <select name="" id="" className="lg:w-1/2 p-1 rounded-sm border text-white bg-neutral-700">
 
-                    <option value=""></option>
-                    <option value=""></option> 
-                </select>
-                <label htmlFor=""> Selecione el servicio: </label>
-                <select name="" id=""> 
-                    {/* // To-Do: Fill options dynamically */}
-                </select>
-                <button type="submit">Generar </button>
-            </form>
-        </div>
-
+                                <option value="">sadasd</option>
+                                <option value=""></option> 
+                            </select>
+                            <label htmlFor=""> Selecione el servicio: </label>
+                            <select name="" id=""  className="lg:w-1/2 p-1 rounded-sm border text-white bg-neutral-700"> 
+                                {/* // To-Do: Fill options dynamically */}
+                            </select>
+                            <button type="submit" className="bg-[#20C05C] w-max p-3 rounded-lg text-black font-bold mt-5 cursor-pointer">Generar </button>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+        
+        </>
     )
 }
 
