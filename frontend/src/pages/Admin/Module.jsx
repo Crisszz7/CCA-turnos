@@ -3,7 +3,7 @@ import {BgPages} from "./components/IU/BgPages.jsx";
 import { HeaderComponent } from "./components/IU/HeaderComponent";
 import{ NavbarComponent }from "./components/IU/NavbarComponent.jsx";
 import {TableComponent} from "./components/IU/TableComponent.jsx";
-import  getModules  from "../../services/api.jsx";
+import  {getModules}  from "../../services/api.jsx";
 
 export const Module = () => {
 
@@ -31,10 +31,7 @@ export const Module = () => {
             <HeaderComponent/>
             <NavbarComponent/>
             <div className="m-auto h-max w-11/12 lg:w-3/4 rounded-md lg:mt-16  shadow-lg">
-            <TableComponent title={"Modulos"} data={modules}/>
-            {modules.map((module, idx) => (
-              <p key={idx}>{module.name}</p>
-            ))}
+            <TableComponent title={"Modulos"} headers={["Nombre", "Rol"]} data={modules}/>
             </div>
         </div>
     </>
