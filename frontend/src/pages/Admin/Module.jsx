@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {BgPages} from "./components/IU/BgPages.jsx";
 import { HeaderComponent } from "./components/IU/HeaderComponent";
 import{ NavbarComponent }from "./components/IU/NavbarComponent.jsx";
 import {TableComponent} from "./components/IU/TableComponent.jsx";
-
+import  getModules  from "../../services/api.jsx";
 
 export const Module = () => {
+
+  const [modules, setModules] = useState([]);
+
+  useEffect(() => {
+    const fetchModules = async () => {
+      try {
+        const data = await getModules();
+        setModules(data); 
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching modules:", error);
+      }
+    };
+    
+    fetchModules();
+  }, []);
+
+
   return (
     <>
         <BgPages/>
@@ -13,7 +31,10 @@ export const Module = () => {
             <HeaderComponent/>
             <NavbarComponent/>
             <div className="m-auto h-max w-11/12 lg:w-3/4 rounded-md lg:mt-16  shadow-lg">
-            <TableComponent title={"Modulos"} />
+            <TableComponent title={"Modulos"} data={modules}/>
+            {modules.map((module, idx) => (
+              <p key={idx}>{module.name}</p>
+            ))}
             </div>
         </div>
     </>
